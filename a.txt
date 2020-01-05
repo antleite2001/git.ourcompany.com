@@ -1,9 +1,65 @@
-C0
-C1
-C2
-C6
-C7
-C8
-C9
-C10
-C11
+[alias]
+	st = status
+	
+	
+	show-tracked-files = ls-tree --full-tree -r --name-only HEAD # show tracked files
+	list-tracked-files = ls-tree --full-tree -r --name-only HEAD # show tracked files
+	
+	show-staged-files = diff --name-only --cached # show staged files
+	list-staged-files = diff --name-only --cached
+	remove-staged-file = "reset HEAD -- " # remove file from stage area
+	delete-staged-file = "reset HEAD -- " # remove file from stage area	
+
+	
+	# list branch 
+	list-branch-detail = log --graph --decorate --name-status --all
+	show-branch-detail = log --graph --decorate --name-status --all
+	list-branch = log --graph --oneline --decorate --all
+	show-branch = log --graph --oneline --decorate --all
+	list-branch-single = log --oneline
+	show-branch-single = log --oneline
+	list-branch-detail-all  = "log --graph --all --pretty=format:'\t%s%Cred\t%h%Creset%C(auto)\t%d%Creset%Cgreen\t(%cr)%C(bold blue)\t<%an>%Creset'   --date=relative"
+    show-branch-detail-all  = "log --graph --all --pretty=format:'\t%s%Cred\t%h%Creset%C(auto)\t%d%Creset%Cgreen\t(%cr)%C(bold blue)\t<%an>%Creset'   --date=relative"
+
+    br = branch
+	list-commit-detail = log --graph --decorate  --name-status --all
+	show-commit-detail = log --graph --decorate  --name-status --all
+	list-commit = log --graph --oneline --decorate --all
+	show-commit = log --graph --oneline --decorate --all
+	list-commit-single = log --oneline
+	show-commit-single = log --oneline
+	list-commit-detail-all  = "log --decorate=full --graph --all --pretty=format:'\t%s%Cred\t%h%Creset%C(auto)\t%d%Creset%Cgreen\t(%cr)%C(bold blue)\t<%an>%Creset'   --date=relative"
+    show-commit-detail-all  = "log --decorate=full --graph --all --pretty=format:'\t%s%Cred\t%h%Creset%C(auto)\t%d%Creset%Cgreen\t(%cr)%C(bold blue)\t<%an>%Creset'   --date=relative"
+	list-commit-detail-no-time  = "log --decorate=full --graph --all --pretty=format:'\t%s%Cred\t%h%Creset%C(auto)\t%d%Creset%C(bold blue)\t<%an>%Creset'"
+    show-commit-detail-no-time  = "log --decorate=full --graph --all --pretty=format:'\t%s%Cred\t%h%Creset%C(auto)\t%d%Creset%C(bold blue)\t<%an>%Creset'"
+	list-commit-branch  = "log --decorate=full --graph --all --pretty=format:'\t%s%Creset%C(auto)\t%d%Creset%Creset'"
+    show-commit-branch  = "log --decorate=full --graph --all --pretty=format:'\t%s%Creset%C(auto)\t%d%Creset%Creset'"
+	list-no-merged-branches = "branch --no-merged"
+	show-no-merged-branches = "branch --no-merged"
+	list-merged-branches = "branch --merged"
+	show-merged-branches = "branch --merged"
+
+
+    # manage branch
+	change-branch = checkout 
+    cb = checkout 
+
+    # git reset --hard refs/heads/master or  git reset --hard HASH_CODE. 
+    goto-commit = reset --hard
+
+	list-last-commit = log -1 HEAD
+	show-last-commit = log -1 HEAD
+
+	#alias commands
+	list-alias = config --get-regexp alias
+	alias-list = config --get-regexp alias # show aliases
+	alias = config --get-regexp alias # show aliases
+	show-alias = config --get-regexp alias
+	alias-show = config --get-regexp alias # show aliases
+
+	# commit all files. Provide a "message"
+	# [alias] chs = !git checkout $1 && git status && : from https://stackoverflow.com/questions/7534184/git-alias-multiple-commands-and-parameters
+	add-all-files-and-commit =   !git commit -a -m  $1 && git log --decorate=full --graph --all --pretty=format:'\t%s%Creset%C(auto)\t%d%Creset%Creset' &&:
+
+	send-to-stage-area = add 
+	
